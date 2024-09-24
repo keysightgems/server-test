@@ -1,0 +1,39 @@
+{
+    "_comment1": "Netbox deployment parameters",
+    "netbox_username": "admin",
+    "netbox_pass": "admin",
+    "netbox_email": "admin212@gmail.com",
+    "private_key_path": "C:/Users/moharedd/.ssh/id_rsa.pub",
+
+    "_comment2": "Netbox acces parameters",
+    "netbox_api_url_1": "http://obox0.lbj.is.keysight.com:4000/api/",
+    "netbox_selenium_url_1": "http://obox0.lbj.is.keysight.com:4000/",
+    "netbox_api_token_1": "a67af4de233b6dfcb62621edb13850d556f88a4e",
+    "netbox_api_url": "http://10.39.70.169:8000/api/",
+    "netbox_selenium_url": "http://10.39.70.169:8000/",
+    "netbox_api_token": "3a0d77d5d033af6a3e2c168f2c9e2cb6d81082b1",
+
+    "_comment3": "Lab Reservation Service running location",
+    "location" : "http://10.39.70.169:8080",
+    "location_1" : "http://10.39.71.143:8080",
+
+    "_comment4": "Linux login details and test cases parameters",
+    "ssh_domain": "obox0.lbj.is.keysight.com",
+    "ssh_user": "root",
+    "ssh_pass": "root",
+    "ssh_port": "1499",
+    "files": ["deploy_netbox.sh", "config.json"],
+    "list_apis": ["dcim/devices", "dcim/sites", "dcim/device-types", "dcim/manufacturers", "dcim/device-roles", "extras/custom-fields", "dcim/cables"],
+    "_comment5": {"dcim/sites/": "./netbox_csv/netbox_sites_1.csv", "dcim/locations/": "./netbox_csv/netbox_locations_2.csv", "dcim/manufacturers/": "./netbox_csv/netbox_manufacturers_3.csv", "dcim/device-types/": "./netbox_csv/netbox_device_types_4.csv", "dcim/device-roles/": "./netbox_csv/netbox_device_roles_5.csv", "dcim/custom-fields/": "./netbox_csv/netbox_custom_fields_6.csv", "dcim/devices/": "./netbox_csv/netbox_devices_7.csv", "dcim/interfaces/": "./netbox_csv/netbox_interfaces_8.csv", "dcim/cables/": "./netbox_csv/netbox_cables_10.csv"},
+    "dict_apis": {"dcim/sites/": ["netbox_csv/netbox_sites_1.csv", "//*[@id='menuOrganization']/ul/li[2]/div/a[2]/i"], "dcim/locations/": ["netbox_csv/netbox_locations_2.csv", "//*[@id='menuOrganization']/ul/li[5]/div/a[2]/i"], "dcim/manufacturers/": ["netbox_csv/netbox_manufacturers_3.csv", "//*[@id='menuDevices']/ul/li[11]/div/a[2]"], "dcim/device-types/": ["netbox_csv/netbox_device_types_4.csv", "//*[@id='menuDevices']/ul/li[9]/div/a[2]/i"], "dcim/device-roles/": ["netbox_csv/netbox_device_roles_5.csv", "//*[@id='menuDevices']/ul/li[4]/div/a[2]/i"], "extras/custom-fields/": ["netbox_csv/netbox_custom_fields_6.csv", "//*[@id='menuCustomization']/ul/li[2]/div/a[2]/i"], "dcim/devices/": ["netbox_csv/netbox_devices_7.csv", "//*[@id='menuDevices']/ul/li[2]/div/a[2]/i"], "dcim/interfaces/": ["netbox_csv/netbox_interfaces_8.csv", "//*[@id='menuDevices']/ul/li[13]/div/a[2]/i"], "dcim/cables/": ["netbox_csv/netbox_cables_10.csv", "//*[@id='menuConnections']/ul/li[2]/div/a"]},
+
+    "_comment6": "Selenium parameters",
+    "login_user": "//*[@id='id_username']",
+    "login_pass": "//*[@id='id_password']",
+    "login_submit": "/html/body/main/div/form/button",
+    "upload_tab": "//*[@id='upload-form-tab']",
+    "upoload_input_id": "id_upload_file",
+    "upload_submit": "//*[@id='upload-form']/div/form/div[4]/div/button",
+    "import_success": "//*[@id='django-messages']/div/div/div"
+}
+

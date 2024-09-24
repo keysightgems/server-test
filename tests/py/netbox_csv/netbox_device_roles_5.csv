@@ -1,0 +1,4 @@
+name,slug,color,vm_role
+DUT,dut,9e9e9e,TRUE
+ATE,ate,9e9e9e,TRUE
+SWITCH,switch,9e9e9e,TRUE

@@ -1,0 +1,9 @@
+address,status,device
+10.36.70.17/24,active,fourhundredgige0/0/0/16
+10.36.70.19/24,active,fourhundredgige0/0/0/18
+10.36.70.21/24,active,fourhundredgige0/0/0/20
+10.36.70.23/24,active,fourhundredgige0/0/0/22
+10.36.71.5/24,active,10.36.70.18/1
+10.36.71.6/24,active,10.36.70.18/2
+10.36.71.7/24,active,"10.36.70.18/3	"
+10.36.71.8/24,active,10.36.70.18/5
