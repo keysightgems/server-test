@@ -1,3 +1,6 @@
 [submodule "submodules/tests"]
 	path = submodules/tests
 	url = https://github.com/keysightgems/tests.git
+[submodule "tests"]
+	path = tests
+	url = https://github.com/keysightgems/tests.git
