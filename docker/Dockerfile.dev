@@ -1,0 +1,22 @@
+FROM ubuntu:22.04 AS dev
+# This variable is only relevant when building image in CI
+# in order to correctly deduce the branch name
+ARG GIT_CURRENT_BRANCH
+# This variable indicates whether the image is being built in CI or not
+ARG CI_CONTEXT
+# These variables are only needed for containerized development environment
+# and not really used during builds (as similar exports exist in do.sh)
+ENV GOPATH=${HOME}/go
+ENV PATH=${PATH}:${HOME}/.local/bin:${HOME}/.local/go/bin:${GOPATH}/bin
+# This path is embedded in dev build
+ENV SRC_ROOT=/home/keysight/laas/controller
+RUN mkdir -p ${SRC_ROOT}
+# Get project source, install dependencies and build it
+COPY . ${SRC_ROOT}/
+RUN cd ${SRC_ROOT} && chmod +x ./do.sh && ./do.sh deps 2>&1
+RUN cd ${SRC_ROOT} && GIT_CURRENT_BRANCH=${GIT_CURRENT_BRANCH} CI_CONTEXT=${CI_CONTEXT} ./do.sh art 2>&1
+# Ports to be published
+EXPOSE 8080
+WORKDIR ${SRC_ROOT}
+# This is needed so that container remains active throughout
+CMD ["/bin/bash"]

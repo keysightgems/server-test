@@ -1,0 +1,23 @@
+FROM alpine:3.19 as timelimited
+ARG USERNAME=laas
+ARG USER_UID=1000
+ARG USER_GID=$USER_UID
+ARG DEV_SRC_ROOT=/home/keysight/laas/controller
+ENV SRC_ROOT=/home/$USERNAME/controller
+# Ports to be published
+EXPOSE 8080
+RUN mkdir -p ${SRC_ROOT}/bin ${SRC_ROOT}/certs ${SRC_ROOT}/web
+COPY --from=dev/laas-controller:latest ${DEV_SRC_ROOT}/bin/timelimited/controller ${SRC_ROOT}/bin/
+COPY --from=dev/laas-controller:latest ${DEV_SRC_ROOT}/bin/version ${SRC_ROOT}/bin/
+COPY --from=dev/laas-controller:latest ${DEV_SRC_ROOT}/certs ${SRC_ROOT}/certs/
+COPY --from=dev/laas-controller:latest ${DEV_SRC_ROOT}/web ${SRC_ROOT}/web/
+# Create a non-root user and make root group as owner of files per (to allow running containers with arbitrary UID/GID)
+# https://docs.openshift.com/container-platform/3.11/creating_images/guidelines.html#openshift-specific-guidelines
+RUN addgroup --gid ${USER_GID} ${USERNAME} \
+    && adduser --uid ${USER_UID} --disabled-password --ingroup ${USERNAME} $USERNAME \
+    && chown -R ${USER_UID}:0 /home/${USERNAME} \
+    && chmod -R g=u /home/${USERNAME} \
+    && chmod g=u /etc/passwd
+USER $USERNAME
+WORKDIR ${SRC_ROOT}
+ENTRYPOINT ["./bin/controller"]

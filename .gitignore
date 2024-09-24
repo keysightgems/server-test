@@ -1,0 +1,8 @@
+api
+bin
+certs
+logs
+pkg/stubs
+scratch
+web
+/*.json
